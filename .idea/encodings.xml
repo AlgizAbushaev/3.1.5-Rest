@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources/templates/Hello!.html" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources/templates/create.html" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources/templates/edit.html" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources/templates/userInf.html" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/PP_3_1_2_Boot_Security-master/src/main/resources/templates/users.html" charset="windows-1251" />
+  </component>
+</project>
