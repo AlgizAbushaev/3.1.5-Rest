@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+<h2> User List </h2>
+<table>
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th> Username </th>
+        <th> Password </th>
+        <th> Roles</th>
+        <th> Operations </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td><a th:text="${user.getId()}"> ID </a></td>
+        <td><a th:text="${user.getUsername()}"> USERNAME </a></td>
+        <td><a th:text="${user.getPassword()}"> PASSWORD </a></td>
+        <td><a th:each="role: ${user.getRoles()}">
+            <a th:text="${role.getName()}"/></a></td>
+        <td>
+            <a th:href="@{'admin/updateUser/' + ${user.getId()}}"> Edit </a>
+            <a th:href="@{'admin/deleteUser/' + ${user.getId()}}"> Delete </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<input type="button" value="Add user" onclick="window.location.href='admin/addUser'">
+<br><br>
+<form action="/logout" method="POST">
+    <button type="submit">Logout</button>
+</form>
+</body>
+</html>

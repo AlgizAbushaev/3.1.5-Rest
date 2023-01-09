@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${add} ? 'Create user' : 'Edit user'" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h2 th:text="${add} ? 'Create user:' : 'Edit user:'" />
+<a th:href="@{/admin}">Back to User List</a>
+<br/><br/>
+<form th:action="${add} ? 'addUser' :  ${user.getId()}" th:method="POST" th:object="${user}" >
+    <table>
+        <tr th:if="${user.getId()}">
+            <td>ID</td>
+            <td>:</td>
+            <td th:utext="${user.getId()}">ID</td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{username}" />
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>:</td>
+            <td><input type="text" th:field="*{password}" />
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</div>
+            </td>
+        </tr>
+        <tr>
+            <td>Roles</td>
+            <td>:</td>
+            <td>
+                <input th:type="checkbox" th:id="2" th:name="ADMIN" th:value="ROLE_ADMIN" th:checked="${radmin}">
+                <label th:for="ADMIN">Admin</label>
+                <input th:type="checkbox" th:id="1" th:name="USER" th:value="ROLE_USER" th:checked="${ruser}">
+                <label th:for="USER">User </label>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="OK"/>
+    <br><br>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+
+</form>
+
+</body>
+</html>
