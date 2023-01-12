@@ -1,12 +1,11 @@
-package ru.kata.spring.boot_security.demo.service;
+package ru.kata.spring.boot_security.demo.dao;
 
 
-import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
 
-public interface UserService extends UserDetailsService {
+public interface UserDao {
     List<User> getAllUsers();
 
     void addUser(User user);
@@ -18,5 +17,4 @@ public interface UserService extends UserDetailsService {
     User removeUser(long id);
 
     User getByName(String username);
-
 }
