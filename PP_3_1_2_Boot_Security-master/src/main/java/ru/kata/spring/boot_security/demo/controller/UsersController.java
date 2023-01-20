@@ -13,17 +13,15 @@ public class UsersController {
 
     private final UserService userService;
 
-    @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
     }
-
 
     @GetMapping("/user")
     public ModelAndView showUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("userInf");
+        modelAndView.setViewName("Tabs_user");
         modelAndView.addObject("user", user);
         return modelAndView;
     }

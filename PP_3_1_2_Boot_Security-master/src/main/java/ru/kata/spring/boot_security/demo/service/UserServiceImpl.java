@@ -13,7 +13,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     final UserDao userDao;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
     public User getByName(String username) {
         return userDao.getByName(username);
     }

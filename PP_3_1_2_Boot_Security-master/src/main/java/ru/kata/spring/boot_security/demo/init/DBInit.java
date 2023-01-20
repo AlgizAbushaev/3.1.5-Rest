@@ -21,12 +21,10 @@ public class DBInit {
     private final RoleService roleService;
     private final UserService userService;
 
-    //    final BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
     public DBInit(RoleService roleService, UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.roleService = roleService;
         this.userService = userService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+
     }
 
     @PostConstruct

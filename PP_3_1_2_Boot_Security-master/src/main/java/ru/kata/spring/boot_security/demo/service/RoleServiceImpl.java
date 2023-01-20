@@ -14,7 +14,6 @@ public class RoleServiceImpl implements RoleService {
 
     private RoleDao roleDao;
 
-    @Autowired
     public RoleServiceImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
     }
@@ -37,7 +36,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
     public Role getById(int id) {
         return roleDao.getById(id);
     }
