@@ -28,20 +28,61 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().successHandler(successUserHandler)
-                .and()
-                .logout()
+//        http
+//                .httpBasic() // for postman
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+//                .and()
+//                .csrf().disable() // for postman
+//                .formLogin().disable(); // for postman
+
+
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin().successHandler(successUserHandler)
+//                .and()
+//                .logout()
+//                .permitAll()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/login")
+//                .and().csrf().disable();
+
+
+        http.formLogin()
+                .successHandler(new SuccessUserHandler())
+                .loginProcessingUrl("/login")
+
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
+
+                .permitAll();
+
+        http.logout()
                 .permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login")
                 .and().csrf().disable();
+
+        http
+                .authorizeRequests()
+                .antMatchers("/login").anonymous()
+                // .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .and()
+                .logout().logoutSuccessUrl("/");
+
+
     }
 
     @Bean

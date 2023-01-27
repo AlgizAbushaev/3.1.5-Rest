@@ -31,16 +31,25 @@ public class DBInit {
     private void postConstruct() {
         Role adminRole = new Role("ROLE_ADMIN");
         Role userRole = new Role("ROLE_USER");
+        Role managerRole = new Role("ROLE_MANAGER");
+
         roleService.add(adminRole);
         roleService.add(userRole);
+        roleService.add(managerRole);
+
         Set<Role> roles_admin = new HashSet<>();
         roles_admin.add(roleService.getByName("ROLE_ADMIN"));
         User admin = new User("admin", "admin", "admin@mail.ru", roles_admin);
         userService.addUser(admin);
+
         Set<Role> roles_user = new HashSet<>();
         roles_user.add(roleService.getByName("ROLE_USER"));
-        User user = new User("user",
-                "user", "user@mail.ru", roles_user);
+        User user = new User("user", "user", "user@mail.ru", roles_user);
         userService.addUser(user);
+
+        Set<Role> roles_manager = new HashSet<>();
+        roles_manager.add(roleService.getByName("ROLE_MANAGER"));
+        User manager = new User("manager", "manager", "manager@mail.ru", roles_manager);
+        userService.addUser(manager);
     }
 }

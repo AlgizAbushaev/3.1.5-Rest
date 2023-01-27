@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="roles")
 public class User implements Serializable, UserDetails {
 
     @Id
@@ -23,24 +26,20 @@ public class User implements Serializable, UserDetails {
     private String password;
 
     private String email;
-    //(fetch = FetchType.LAZY)
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User() {
+    public User(UserDetails user) {
 
     }
 
-//    public User(Long id, String userName, String password, String email, Set<Role> roles) {
-//        this.id = id;
-//        this.userName = userName;
-//        this.password = password;
-//        this.email = email;
-//        this.roles = roles;
-//    }
+    public User() {
+
+    }
 
     public User(String userName, String password, String email, Set<Role> roles) {
         this.userName = userName;
