@@ -10,7 +10,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 public class IndexController {
     private final UserService userService;
 
-    @Autowired
+
     public IndexController(UserService userService) {
         this.userService = userService;
     }

@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -20,37 +21,38 @@ public class RestAdminController {
     }
 
     @GetMapping()
-    public List<User> userALL() {
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> userALL() {
+        List<User> list = userService.getAllUsers();
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable int id) {
+    public ResponseEntity<User> getUser(@PathVariable int id) {
         User user = userService.getUserId(id);
-        return user;
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping()
-    public User addUser(@RequestBody User user) {
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         userService.addUser(user);
-        return user;
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping()
-    public User updateUser(@RequestBody User user) {
-
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         userService.updateUser(user);
-        return user;
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable int id) {
-
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
         userService.removeUser(id);
+        return ResponseEntity.ok("");
     }
 
     @GetMapping("/getroles")
-    private List<Role> allRoles() {
-        return (List<Role>) roleService.findAll();
+    private ResponseEntity<List<Role>> allRoles() {
+        List<Role> listRoles = roleService.findAll();
+        return ResponseEntity.ok(listRoles);
     }
 }
