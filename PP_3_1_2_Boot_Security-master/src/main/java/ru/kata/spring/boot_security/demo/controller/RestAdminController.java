@@ -37,7 +37,7 @@ public class RestAdminController {
         userService.addUser(user);
         return ResponseEntity.ok(user);
     }
- 
+
     @PutMapping()
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         userService.updateUser(user);
